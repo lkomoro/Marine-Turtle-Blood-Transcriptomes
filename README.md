@@ -8,15 +8,18 @@ Samples were sequenced across three HiSeq lanes
 1. Check md5sums to verify integrity of files
 2. Concatenate new lane reads. The script referenced needs to be looped; we ran jobs in parallel for computing efficiency, with samples ending in 0 using one script, then samples ending in 1, etc.
 3. Check line counts add up before and after concatenation
+
 *associated scripts: concat_across_lanes.sh*
 
 ### ii. Check quality with fastqc and multiqc
 *associated scripts: fastqc_loop.sh*
+
 Multiqc is installed globally on our cluster, from command line, run <multiqc *.fastqc>
 
 
 ### iii. Trimming newly concatenated reads with Sickle and Scythe
 *Assocated scripts: sickle_scythe.sh *
+
 Purpose: sickle uses a sliding window along with quality and length thresholds to determine when to trim or discard reads. Scythe uses a bayesian approach to remove adapters.
 Resources:  [sickle documentation](https://github.com/najoshi/sickle); [UCDavis workshop info](https://bioinformatics.ucdavis.edu/research-computing/software/)
 
