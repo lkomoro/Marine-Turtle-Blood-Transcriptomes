@@ -6,23 +6,26 @@ A repository for scripts, notes and workflows for our collaborative project inve
 Samples were sequenced across three HiSeq lanes
 
 1. Check md5sums to verify integrity of files
-2. Concatenate new lane reads
-*insert associated script*
+2. Concatenate new lane reads. The script referenced needs to be looped; we ran jobs in parallel for computing efficiency, with samples ending in 0 using one script, then samples ending in 1, etc.
+3. Check line counts add up before and after concatenation
+*associated scripts: concat_across_lanes.sh*
 
-### ii. Check quality with fastqc and multiqc *Assocated scripts found in *
+### ii. Check quality with fastqc and multiqc
+*associated scripts: fastqc_loop.sh*
+Multiqc is installed globally on our cluster, from command line, run <multiqc *.fastqc>
 
 
 ### iii. Trimming newly concatenated reads with Sickle and Scythe
-*Assocated scripts found in *
+*Assocated scripts: sickle_scythe.sh *
 Purpose: sickle uses a sliding window along with quality and length thresholds to determine when to trim or discard reads. Scythe uses a bayesian approach to remove adapters.
 Resources:  [sickle documentation](https://github.com/najoshi/sickle); [UCDavis workshop info](https://bioinformatics.ucdavis.edu/research-computing/software/)
 
 ### iv. Check quality with fastqc and multiqc (after trimming) to ensure low-quality sequences were removed/trimmed and adapters are properly removed
-*Assocated scripts found in *
+*Assocated scripts:fastqc_loop.sh *
 
 ## II. De-novo transcriptome assembly with Trinity
 ### i. Concatenate all R1 and R2 reads into to unique files (for Trinity input)
-*Assocated scripts found in *
+*Assocated script: concat_R1_R2.sh *
 
 ### ii. Run Trinity
 Purpose: Trinity takes many individual sequences where we expect a lot of discontinutity, creates many individual graphs from these sequences, and extracts isoforms from these. inchworm assembles read data and results in a collection of contigs with each k-mer present only once in contigs. chrysalis pools contigs if they share at least one k-1-mer, and builds de Bruijn graphs from each pool, Butterfly takes these and reconsturcts distinct transcripts. We used Trinity over other assemblers because it has been shown to generate more complete de-novo assemblies, though it's important to filter out potential chimeric transcripts downstream.
@@ -31,7 +34,7 @@ Resources: [Trinity publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC35
 Parameters: --min_contig_length 300 #exclude transcripts less than 300bp, since we did 150bp PE sequencing
 --no_salmon #we ran salmon seperately
 --SS_lib_type RF #used RF for our strand specific kit, check library prep kit for this
-*Assocated scripts found in *
+*Assocated script: run_trinity.sh *
 
 ## III. Gathering quality metrics on de-novo transcriptome
 Purpose: Evaluate completeness (biological and technical) of assembly, compare different assemblies
