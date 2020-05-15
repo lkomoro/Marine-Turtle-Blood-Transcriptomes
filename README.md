@@ -20,7 +20,7 @@ A repository for scripts, notes and workflows for our collaborative project inve
 *Assocated scripts found in *
 
 ### ii. Run Trinity
-Parameters: 
+Parameters:
 *Assocated scripts found in *
 
 ## III. Gathering quality metrics on de-novo transcriptome
@@ -34,7 +34,9 @@ Parameters:
 ### iv. Transrate
 
 ## IV. Filtering Assembly
-### i. Contamintation filtering with TransDecoder
+### i. Filtering with Transrate
+### ii. Filtering with cd-hit
+
 
 ## V. Quantification with Salmon (Mapping original reads to filtered assembly)
 ###i. Build Salmon index
@@ -42,3 +44,8 @@ Parameters:
 ###ii. Quantify transcript abundance
 
 ### iii. Format count files for input into R for DGE analysis:
+
+##VI. Preparation for orthofinder
+### i. run TransDecoder
+
+##VII. Run orthofinder
