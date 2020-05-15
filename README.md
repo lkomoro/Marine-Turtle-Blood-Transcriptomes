@@ -45,7 +45,7 @@ Parameters:
 
 ### iii. Format count files for input into R for DGE analysis:
 
-##VI. Preparation for orthofinder
+## VI. Preparation for orthofinder
 ### i. run TransDecoder
 
-##VII. Run orthofinder
+## VII. Run orthofinder
