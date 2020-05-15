@@ -39,9 +39,9 @@ Parameters:
 
 
 ## V. Quantification with Salmon (Mapping original reads to filtered assembly)
-###i. Build Salmon index
+### i. Build Salmon index
 
-###ii. Quantify transcript abundance
+### ii. Quantify transcript abundance
 
 ### iii. Format count files for input into R for DGE analysis:
 
