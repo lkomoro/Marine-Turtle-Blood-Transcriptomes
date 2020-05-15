@@ -3,14 +3,19 @@ A repository for scripts, notes and workflows for our collaborative project inve
 
 ## I. Pre-processing and quality checks
 ### i. Concatenating files from multiple lanes
+Samples were sequenced across three HiSeq lanes
+
 1. Check md5sums to verify integrity of files
 2. Concatenate new lane reads
 *insert associated script*
 
 ### ii. Check quality with fastqc and multiqc *Assocated scripts found in *
 
+
 ### iii. Trimming newly concatenated reads with Sickle and Scythe
 *Assocated scripts found in *
+Purpose: sickle uses a sliding window along with quality and length thresholds to determine when to trim or discard reads. Scythe uses a bayesian approach to remove adapters.
+Resources:  [sickle documentation](https://github.com/najoshi/sickle); [UCDavis workshop info](https://bioinformatics.ucdavis.edu/research-computing/software/)
 
 ### iv. Check quality with fastqc and multiqc (after trimming) to ensure low-quality sequences were removed/trimmed and adapters are properly removed
 *Assocated scripts found in *
@@ -20,25 +25,39 @@ A repository for scripts, notes and workflows for our collaborative project inve
 *Assocated scripts found in *
 
 ### ii. Run Trinity
-Parameters:
+Purpose: Trinity takes many individual sequences where we expect a lot of discontinutity, creates many individual graphs from these sequences, and extracts isoforms from these. inchworm assembles read data and results in a collection of contigs with each k-mer present only once in contigs. chrysalis pools contigs if they share at least one k-1-mer, and builds de Bruijn graphs from each pool, Butterfly takes these and reconsturcts distinct transcripts. We used Trinity over other assemblers because it has been shown to generate more complete de-novo assemblies, though it's important to filter out potential chimeric transcripts downstream.
+
+Resources: [Trinity publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3571712/) ; [Trinity github](https://github.com/trinityrnaseq/trinityrnaseq) ; [Harvard best practices](https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html)
+Parameters: --min_contig_length 300 #exclude transcripts less than 300bp, since we did 150bp PE sequencing
+--no_salmon #we ran salmon seperately
+--SS_lib_type RF #used RF for our strand specific kit, check library prep kit for this
 *Assocated scripts found in *
 
 ## III. Gathering quality metrics on de-novo transcriptome
-
+Purpose: Evaluate completeness (biological and technical) of assembly, compare different assemblies
 ### i. TrinityStats
-
+This provides basic metrics like transcript abundance, contig Nx values, median contig lengths.
 ### ii. Re-mapping rates with Salmon and Bowtie
+High re-mapping rates indicate high quality assemblies. Input should be the samples used to generate the transcriptome
 
 ### iii. BUSCO score
+High BUSCO scores indicate biological completeness. We used vertebrata database of orthologous groups
 
 ### iv. Transrate
+Also provides the metrics from TrinityStats, as well as an assembly score based on individual contig scores, and provides a "good.assembly.fasta" file that contains a filtered version of the assembly with bad contigs removed. NOTE that the only copy of Transrate we've found to work is that downloaded from the Oyster River Protocol github page.
+
+### v. contaminant abundance
+Use diamond blast to determine abundance of transcripts in assembly with top hits matching non-vertebrate species.
 
 ## IV. Filtering Assembly
+Purpose: remove chimeric or misassembled transcripts, remove redundant transcripts for downstream applications (esp important because Trinity assemblies are very large)
 ### i. Filtering with Transrate
+See above, use the "goodcontigs.fasta" file for next steps.
 ### ii. Filtering with cd-hit
 
 
 ## V. Quantification with Salmon (Mapping original reads to filtered assembly)
+Purpose: salmon uses quasi-mapping to quantify transcripts which is faster than full alignment methods like Kallisto and sailfish, and models sample-specific bias while retaining speed.
 ### i. Build Salmon index
 
 ### ii. Quantify transcript abundance
