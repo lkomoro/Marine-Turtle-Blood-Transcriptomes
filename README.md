@@ -43,16 +43,23 @@ Parameters: --min_contig_length 300 #exclude transcripts less than 300bp, since 
 Purpose: Evaluate completeness (biological and technical) of assembly, compare different assemblies
 ### i. TrinityStats
 This provides basic metrics like transcript abundance, contig Nx values, median contig lengths.
+*Assocated script: trinity_stats.sh *
+
 ### ii. Re-mapping rates with Salmon and Bowtie
 High re-mapping rates indicate high quality assemblies. Input should be the samples used to generate the transcriptome
+*Assocated scripts: salmon_index.sh and salmon.sh (in order)*
+
+*TODO: Add bowtie script*
 
 ### iii. BUSCO score
 High BUSCO scores indicate biological completeness. We used vertebrata database of orthologous groups
+*Assocated script and config: busco4.sh and Busco4_config.ini *
 
 ### iv. Transrate
 Also provides the metrics from TrinityStats, as well as an assembly score based on individual contig scores, and provides a "good.assembly.fasta" file that contains a filtered version of the assembly with bad contigs removed. NOTE that the only copy of Transrate we've found to work is that downloaded from the Oyster River Protocol github page.
+*Assocated script: transrate.sh *
 
-### v. contaminant abundance
+### v. Contaminant abundance
 Use diamond blast to determine abundance of transcripts in assembly with top hits matching non-vertebrate species.
 
 ## IV. Filtering Assembly
