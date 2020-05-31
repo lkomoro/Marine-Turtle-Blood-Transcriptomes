@@ -94,6 +94,15 @@ Roll up quant files in salmon directories generate .count file for R analysis. M
 ## VI. Preparation for orthofinder
 To run orthofinder on multiple assemblies, you first need to generate translated amino acid sequences from your filtered assemblies. Following the above filtering steps, run transdecoder to do this. You will ultimately end up with four output files, one of which ends in .pep and should be used in orthofinder analysis.
 
-### i. run TransDecoder
+### i. run TransDecoder 
+Extract the Longest open reading frames from your filtered assemblies then predict likely coding regions from the single best open reading frame per transcript.
+
+*associated scripts: transdecoder.sh*
+
+Use the .pep files containing translated amino acide sequences for downstream analysis. To run OrthoFinder, you will need to to make directories containing pep files for each assembly you want to include in an analysis and rename the files to end in .fa or .fasta.
 
 ## VII. Run orthofinder
+Use OrthoFinder (https://github.com/davidemms/OrthoFinder) to find orthogroups of genes from each of your assemblies.
+
+
+*associated scripts: orthofinder.sh*
