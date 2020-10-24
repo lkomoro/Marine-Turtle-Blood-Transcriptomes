@@ -1,4 +1,8 @@
-leatherback blood assembly- good.Dc_Trinity_cd-hit.fasta.tbz		
-green turtle blood assembly- miniGT_cd-hit_transrate_filt_Trinity.fasta.tbz
-hawksbill blood assembly- good.Ei_Trinity_cd-hit.fasta.tbz		
-loggerhead blood assembly- transrate_cdhit_filtered_Cc_assem.fasta.tbz
+leatherback blood assembly-        good.Dc_Trinity_cd-hit.fasta.tbz		
+green turtle blood assembly-       miniGT_cd-hit_transrate_filt_Trinity.fasta.tbz
+hawksbill blood assembly-          good.Ei_Trinity_cd-hit.fasta.tbz		
+loggerhead blood assembly-         transrate_cdhit_filtered_Cc_assem.fasta.tbz
+leatherback lung assembly-         good.DerCor_lung_Trinity.fasta.tbz		
+leatherback ovary assembly-        good.ovary_Trinity.fasta.tbz
+leatherback brain assembly-        good.brain_Trinity.fasta.tbz		
+leatherback multi-tissue assembly- cd-hit_transrate_dcalltiss.Trinity.fasta.tbz	
