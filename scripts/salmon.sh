@@ -1,5 +1,5 @@
 #!/bin/bash
-#salmon1.1 on Dc tissues
+#run salmon on one file 
 
 #BSUB -q short
 #BSUB -W 4:00
