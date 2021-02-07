@@ -39,6 +39,7 @@ cts2 <- cts[keep,]
 # Create a DGEList object (edgeR's container for RNA-seq count data)
 ed <- DGEList(cts2)
 # Calculate normalization factors
+# CalcNormFactor()'s default method is 'TMM'
 ed <- calcNormFactors(ed)
 
 ## Set up design matrix
